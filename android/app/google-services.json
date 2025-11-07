@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "244814410688",
+    "project_id": "controle-abastecimento-ca741",
+    "storage_bucket": "controle-abastecimento-ca741.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244814410688:android:5c258f618ecb6b5632ce25",
+        "android_client_info": {
+          "package_name": "com.example.controle_abastecimento"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3C_oKFC5FV_QVYXFEj1sMubvQB8aAqmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

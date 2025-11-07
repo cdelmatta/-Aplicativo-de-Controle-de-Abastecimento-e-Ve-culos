@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'theme/app_theme.dart';
+import 'services/auth_service.dart';
+import 'auth/login_page.dart';
+import 'auth/register_page.dart';
+import 'home/home_page.dart';
+import 'veiculos/veiculo_page.dart';
+import 'abastecimentos/abastecimento_page.dart';
+import 'relatorios/graficos_page.dart';
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthService()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Controle de Abastecimento',
+        theme: AppTheme.theme,
+        initialRoute: '/login',
+        routes: {
+          '/login': (_) => const LoginPage(),
+          '/register': (_) => const RegisterPage(),
+          '/home': (_) => const HomePage(),
+          '/veiculos': (_) => const VeiculoPage(),
+          '/abastecimentos': (_) => const AbastecimentoPage(),
+          '/graficos': (_) => const GraficosPage(),
+        },
+      ),
+    );
+  }
+}
