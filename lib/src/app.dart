@@ -8,7 +8,8 @@ import 'home/home_page.dart';
 import 'veiculos/veiculo_page.dart';
 import 'abastecimentos/abastecimento_page.dart';
 import 'relatorios/graficos_page.dart';
-
+import 'abastecimentos/novo_abastecimento_page.dart';
+import 'veiculos/novo_veiculo_page.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -27,8 +28,11 @@ class MyApp extends StatelessWidget {
           '/register': (_) => const RegisterPage(),
           '/home': (_) => const HomePage(),
           '/veiculos': (_) => const VeiculoPage(),
+          '/veiculos/novo': (_) => const NovoVeiculoPage(),
           '/abastecimentos': (_) => const AbastecimentoPage(),
           '/graficos': (_) => const GraficosPage(),
+          '/abastecimentos/novo': (_) => const NovoAbastecimentoPage(),
+          
         },
       ),
     );
