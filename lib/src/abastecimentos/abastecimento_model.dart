@@ -1,13 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Abastecimento {
-  String id;
-  DateTime data;
-  double quantidadeLitros;
-  double valorPago;
-  int quilometragem;
-  String tipoCombustivel;
-  String veiculoId;
-  String? observacao;
-  double? consumo;
+  final String id;
+  final DateTime data;
+  final double quantidadeLitros;
+  final double valorPago;
+  final int quilometragem;
+  final String tipoCombustivel;
+  final String? veiculoId;
+  final String? observacao;
+  final double? consumo;
 
   Abastecimento({
     required this.id,
@@ -16,31 +18,40 @@ class Abastecimento {
     required this.valorPago,
     required this.quilometragem,
     required this.tipoCombustivel,
-    required this.veiculoId,
+    this.veiculoId,
     this.observacao,
     this.consumo,
   });
 
-  Map<String, dynamic> toMap() => {
-    'data': data.toIso8601String(),
-    'quantidadeLitros': quantidadeLitros,
-    'valorPago': valorPago,
-    'quilometragem': quilometragem,
-    'tipoCombustivel': tipoCombustivel,
-    'veiculoId': veiculoId,
-    'observacao': observacao,
-    'consumo': consumo,
-  };
+  factory Abastecimento.fromMap(String id, Map<String, dynamic> m) {
+    DateTime parseData(dynamic raw) {
+      if (raw is Timestamp) return raw.toDate();
+      if (raw is DateTime) return raw;
+      if (raw is String) return DateTime.tryParse(raw) ?? DateTime.now();
+      return DateTime.now();
+    }
 
-  factory Abastecimento.fromMap(String id, Map<String, dynamic> d) => Abastecimento(
-    id: id,
-    data: DateTime.tryParse(d['data'] ?? '') ?? DateTime.now(),
-    quantidadeLitros: (d['quantidadeLitros'] ?? 0).toDouble(),
-    valorPago: (d['valorPago'] ?? 0).toDouble(),
-    quilometragem: (d['quilometragem'] ?? 0) as int,
-    tipoCombustivel: (d['tipoCombustivel'] ?? '') as String,
-    veiculoId: (d['veiculoId'] ?? '') as String,
-    observacao: d['observacao'] as String?,
-    consumo: (d['consumo'] as num?)?.toDouble(),
-  );
+    return Abastecimento(
+      id: id,
+      data: parseData(m['data']),
+      quantidadeLitros: (m['quantidadeLitros'] as num?)?.toDouble() ?? 0.0,
+      valorPago: (m['valorPago'] as num?)?.toDouble() ?? 0.0,
+      quilometragem: (m['quilometragem'] as num?)?.toInt() ?? 0,
+      tipoCombustivel: (m['tipoCombustivel'] as String?) ?? 'Gasolina',
+      veiculoId: m['veiculoId'] as String?,
+      observacao: m['observacao'] as String?,
+      consumo: (m['consumo'] as num?)?.toDouble(),
+    );
+  }
+
+  Map<String, dynamic> toMap() => {
+        'data': data,
+        'quantidadeLitros': quantidadeLitros,
+        'valorPago': valorPago,
+        'quilometragem': quilometragem,
+        'tipoCombustivel': tipoCombustivel,
+        'veiculoId': veiculoId,
+        'observacao': observacao,
+        'consumo': consumo,
+      };
 }

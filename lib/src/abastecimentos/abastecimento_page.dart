@@ -20,6 +20,9 @@ class AbastecimentoPage extends StatelessWidget {
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FS.abastecimentosCol().orderBy('data', descending: true).snapshots(),
         builder: (context, snap) {
+          if (snap.hasError) {
+            return Center(child: Text('Erro: ${snap.error}'));
+          }
           if (snap.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
@@ -33,10 +36,14 @@ class AbastecimentoPage extends StatelessWidget {
               final a = Abastecimento.fromMap(docs[i].id, docs[i].data());
               return Card(
                 child: ListTile(
-                  title: Text('${a.tipoCombustivel} • ${a.quantidadeLitros.toStringAsFixed(2)} L'),
+                  title: Text(
+                    '${a.tipoCombustivel} • ${a.quantidadeLitros.toStringAsFixed(2)} L',
+                  ),
                   subtitle: Text(
-                    '${a.data.toLocal().toString().substring(0,16)} | Km: ${a.quilometragem} | R\$ ${a.valorPago.toStringAsFixed(2)}'
-                    '${a.consumo!=null ? ' | Consumo: ${a.consumo!.toStringAsFixed(2)} km/L' : ''}'
+                    '${a.data.toLocal().toString().substring(0, 16)} '
+                    '| Km: ${a.quilometragem} '
+                    '| R\$ ${a.valorPago.toStringAsFixed(2)}'
+                    '${a.consumo != null ? ' | Consumo: ${a.consumo!.toStringAsFixed(2)} km/L' : ''}',
                   ),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete_outline),
