@@ -1,6 +1,6 @@
 # controle_abastecimento
 
-A new Flutter project.
+QUANDO ENTRAR NO APP, OLHE O SOBRE O APLICATIVO
 
 ## Getting Started
 
