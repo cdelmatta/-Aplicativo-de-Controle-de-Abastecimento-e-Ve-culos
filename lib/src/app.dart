@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Controle de Abastecimento',
-        theme: AppTheme.theme,
+        theme: AppTheme.light(),
+        themeMode: ThemeMode.light,
         initialRoute: '/login',
         routes: {
           '/login': (_) => const LoginPage(),
