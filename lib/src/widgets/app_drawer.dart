@@ -12,7 +12,12 @@ class AppDrawer extends StatelessWidget {
         child: ListView(
           children: [
             const DrawerHeader(
-              child: Center(child: Text('Controle de Abastecimento', style: TextStyle(fontSize: 18))),
+              child: Center(
+                child: Text(
+                  'Controle de Abastecimento',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
             ),
             ListTile(
               leading: const Icon(Icons.directions_car),
@@ -22,18 +27,29 @@ class AppDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.local_gas_station),
               title: const Text('Registrar Abastecimento'),
-              onTap: () => Navigator.pushReplacementNamed(context, '/abastecimentos/novo'),
+              onTap: () => Navigator.pushReplacementNamed(
+                context,
+                '/abastecimentos/novo',
+              ),
             ),
             ListTile(
               leading: const Icon(Icons.history),
               title: const Text('Histórico de Abastecimentos'),
-              onTap: () => Navigator.pushReplacementNamed(context, '/abastecimentos'),
+              onTap: () =>
+                  Navigator.pushReplacementNamed(context, '/abastecimentos'),
             ),
             ListTile(
               leading: const Icon(Icons.insights),
               title: const Text('Gráficos'),
               onTap: () => Navigator.pushReplacementNamed(context, '/graficos'),
             ),
+
+            ListTile(
+              leading: const Icon(Icons.info_outline),
+              title: const Text('Sobre o aplicativo'),
+              onTap: () => Navigator.pushNamed(context, '/sobre'),
+            ),
+
             const Divider(),
             ListTile(
               leading: const Icon(Icons.logout),
@@ -41,7 +57,11 @@ class AppDrawer extends StatelessWidget {
               onTap: () async {
                 await context.read<AuthService>().signOut();
                 if (context.mounted) {
-                  Navigator.pushNamedAndRemoveUntil(context, '/login', (_) => false);
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/login',
+                    (_) => false,
+                  );
                 }
               },
             ),

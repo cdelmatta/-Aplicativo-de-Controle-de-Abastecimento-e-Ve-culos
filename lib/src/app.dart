@@ -10,6 +10,8 @@ import 'abastecimentos/abastecimento_page.dart';
 import 'relatorios/graficos_page.dart';
 import 'abastecimentos/novo_abastecimento_page.dart';
 import 'veiculos/novo_veiculo_page.dart';
+import 'about/about_page.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
           '/abastecimentos': (_) => const AbastecimentoPage(),
           '/graficos': (_) => const GraficosPage(),
           '/abastecimentos/novo': (_) => const NovoAbastecimentoPage(),
-          
+          '/sobre': (_) => const AboutPage(),
         },
       ),
     );
